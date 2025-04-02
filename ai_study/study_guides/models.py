@@ -7,6 +7,7 @@ class StudyGuide(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     file = models.FileField(upload_to="source_files")
+    file_text_data = models.TextField()
 
     def __str__(self):
         return f'Study guide "{self.title}" by {self.user.username}'
