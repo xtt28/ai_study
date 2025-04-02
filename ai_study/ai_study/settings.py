@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'study_guides',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom settings added by this application.
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+MEDIA_ROOT = 'media'
