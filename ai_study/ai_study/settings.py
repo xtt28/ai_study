@@ -135,3 +135,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MEDIA_ROOT = 'media'
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
