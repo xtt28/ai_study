@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Big Tommy{% endblock title %}
+
+{% block content %}
+<hgroup class="space-y-2">
+    <h1 class="text-3xl font-bold">{{ studyguide.title }}</h1>
+    <p class="text-xl opacity-70">Created at {{ studyguide.created_at }}</p>
+</hgroup>
+
+<section class="mt-10 space-y-2">
+    <h2 class="text-2xl">Outline</h2>
+    <p>{{ studyguide.outline.content | linebreaks }}</p>
+</section>
+{% endblock content %}

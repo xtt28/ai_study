@@ -25,7 +25,7 @@ def study_guide_after_save(sender, instance, created, *args, **kwargs):
         create_outline.delay(instance.id)
     
 class TextStudyGuide(models.Model):
-    study_guide = models.OneToOneField(StudyGuide, on_delete=models.CASCADE, related_name="text_study_guide")
+    study_guide = models.OneToOneField(StudyGuide, on_delete=models.CASCADE, related_name="outline")
     content = models.TextField()
 
     def __str__(self):
