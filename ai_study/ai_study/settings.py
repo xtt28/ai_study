@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tailwind',
+    'theme',
     'users',
     'study_guides',
 ]
@@ -138,3 +140,6 @@ OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
+
+TAILWIND_APP_NAME = 'theme'
+NPM_BIN_PATH = 'C:/Program Files/nodejs/npm.cmd'
