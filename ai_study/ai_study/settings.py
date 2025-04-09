@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'theme',
     'users',
     'study_guides',
+    'markdownify.apps.MarkdownifyConfig',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,26 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
 
 TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = 'C:/Program Files/nodejs/npm.cmd'
+
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            'a',
+            'abbr',
+            'acronym',
+            'b',
+            'blockquote',
+            'em',
+            'i',
+            'li',
+            'ol',
+            'p',
+            'strong',
+            'ul',
+            'h1',
+            'h2',
+            'h3',
+            
+        ]
+    }
+}

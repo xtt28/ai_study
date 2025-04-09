@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Create a study guide{% endblock title %}
+
+{% block content %}
+
+<h1 class="text-3xl font-bold">Create a study guide</h1>
+
+<form method="post" class="mt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="fieldset">
+        <legend class="fieldset-legend">Name</legend>
+        <input type="text" class="input" name="title" placeholder="My study guide" />
+        <p class="fieldset-label">You can edit this later.</p>
+    </fieldset>
+    <input type="file" class="file-input" name="file">
+
+    <input class="btn" type="submit"></input>
+</form>
+{% endblock content %}

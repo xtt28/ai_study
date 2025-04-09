@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load markdownify %}
 
-{% block title %}Big Tommy{% endblock title %}
+{% block title %}{{ studyguide.title }}{% endblock title %}
 
 {% block content %}
 <hgroup class="space-y-2">
@@ -10,6 +11,17 @@
 
 <section class="mt-10 space-y-2">
     <h2 class="text-2xl">Outline</h2>
-    <p>{{ studyguide.outline.content | linebreaks }}</p>
+    {% if studyguide.outline %}
+    <article class="[&>ul]:list-disc [&>ol]:list-decimal [&>h1]:text-2xl [&>h1]:font-bold [&>h2]:text-xl space-y-5" >
+        {% autoescape off %}
+        {{ studyguide.outline.content | markdownify }}
+        {% endautoescape %}
+    </article>
+    {% else %}
+    <div class="text-center">
+        <span class="loading loading-dots loading-md"></span><br>
+        Your outline is being generated. Please wait...
+    </div>
+    {% endif %}
 </section>
 {% endblock content %}

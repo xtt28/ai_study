@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
+from django.urls import reverse
 from .file_parser import parse_pdf
 from .tasks import create_outline
 
@@ -14,6 +15,9 @@ class StudyGuide(models.Model):
 
     def __str__(self):
         return f'Study guide "{self.title}" by {self.user.username}'
+    
+    def get_absolute_url(self):
+        return reverse("study_guides:detail", kwargs={"pk": self.pk})
     
 
 @receiver(models.signals.post_save, sender=StudyGuide)
