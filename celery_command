@@ -1,0 +1,1 @@
+celery -A ai_study.celery worker --pool=threads --concurrency=2
