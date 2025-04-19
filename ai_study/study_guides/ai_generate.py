@@ -5,7 +5,7 @@ from .models import TextStudyGuide
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 def generate_outline(study_guide):
-    system_prompt = """Use the following transcript extracted from a document to generate a study guide in bullet point outline format. Do not add a title or any extra text other than the study guide. When using sublevels in lists, you should indent the sublevels by 4 spaces."""
+    system_prompt = """Use the following transcript extracted from a document to generate a study guide in bullet point outline format, structured with Markdown formatting and headings/subheadings. When adding sublevels to a list, indent each sublevel by 4 additional spaces."""
     raw_text = study_guide.file_text_data
 
     response = client.chat.completions.create(
