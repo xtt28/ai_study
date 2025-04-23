@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Your study guides" %}{% endblock title %}
+
+{% block content %}
+<h1 class="text-3xl font-bold">{% trans "Your study guides" %}</h1>
+
+<main class="mt-5">
+    <ul class="list bg-base-100 rounded-box shadow-md">
+        {% for guide in object_list %}
+            <li class="list-row hover:bg-base-200 transition">
+                <a href="{{ guide.get_absolute_url }}">
+                    <div>{{ guide.title }}</div>
+                    <div class="text-xs uppercase font-semibold opacity-60">Created {{ guide.created_at }} - Last updated {{ guide.updated_at }}</div>
+                </a>
+            </li>
+        {% empty %}
+        {% endfor %}
+    </ul>
+
+    <div class="join mt-3">
+        {% if page_obj.has_previous %}
+        <a class="join-item btn" href="?page={{ page_obj.previous_page_number }}">«</a>
+        {% endif %}
+        <a class="join-item btn">Page {{ page_obj.number }}</a>
+        {% if page_obj.has_next %}
+        <a class="join-item btn" href="?page={{ page_obj.next_page_number }}">»</a>
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}
