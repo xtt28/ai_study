@@ -5,6 +5,12 @@
 
 {% block content %}
 <h1 class="text-3xl font-bold">{% trans "Your study guides" %}</h1>
+<a class="btn btn-primary mt-3" href="{% url 'study_guides:create' %}">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+    Create new
+</a>
 
 <main class="mt-5">
     <ul class="list bg-base-100 rounded-box shadow-md">
