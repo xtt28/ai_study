@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from . import models
@@ -21,3 +21,9 @@ class StudyGuideListView(ListView):
     model = models.StudyGuide
     paginate_by = 10
     ordering = "-updated_at"
+
+
+class StudyGuideUpdateView(UpdateView):
+    model = models.StudyGuide
+    fields = ["title"]
+    template_name_suffix = "_update"
