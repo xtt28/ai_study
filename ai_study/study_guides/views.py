@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from . import models
@@ -27,3 +27,7 @@ class StudyGuideUpdateView(UpdateView):
     model = models.StudyGuide
     fields = ["title"]
     template_name_suffix = "_update"
+
+class StudyGuideDeleteView(DeleteView):
+    model = models.StudyGuide
+    template_name_suffix = "_delete"

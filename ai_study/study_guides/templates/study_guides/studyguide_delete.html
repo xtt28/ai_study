@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Deleting: {{ studyguide.title }}{% endblock title %}
+
+{% block content %}
+<hgroup class="space-y-2">
+    <h1 class="text-3xl font-bold">Delete study guide "{{ studyguide.title }}"?</h1>
+    <p class="text-xl opacity-70">You cannot reverse this action.</p>
+</hgroup>
+
+<form method="post" class="mt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input class="btn btn-primary" type="submit" value="Yes, I'm sure"></input>
+</form>
+{% endblock content %}
