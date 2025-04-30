@@ -38,6 +38,9 @@ class StudyGuideUpdateView(LoginRequiredMixin, UpdateView):
 class StudyGuideDeleteView(LoginRequiredMixin, DeleteView):
     model = models.StudyGuide
     template_name_suffix = "_delete"
+    # Can't use reverse here because of circular import and I am too lazy
+    # to find out a better solution so here we go :)
+    success_url = "/study-guides/list"
 
     def get_queryset(self):
         return super().get_queryset().filter(user__id=self.request.user.id)
