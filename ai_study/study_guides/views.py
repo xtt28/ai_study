@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from . import models
 
-class StudyGuideDetailView(DetailView):
+class StudyGuideDetailView(LoginRequiredMixin, DetailView):
     model = models.StudyGuide
 
-class StudyGuideCreateView(CreateView):
+    def get_queryset(self):
+        return super().get_queryset().filter(user__id=self.request.user.id)
+
+class StudyGuideCreateView(LoginRequiredMixin, CreateView):
     model = models.StudyGuide
     fields = ["title", "file"]
     template_name_suffix = "_create"
@@ -16,22 +19,31 @@ class StudyGuideCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
-
-class StudyGuideListView(ListView):
+class StudyGuideListView(LoginRequiredMixin, ListView):
     model = models.StudyGuide
     paginate_by = 10
     ordering = "-updated_at"
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user__id=self.request.user.id)
 
-class StudyGuideUpdateView(UpdateView):
+class StudyGuideUpdateView(LoginRequiredMixin, UpdateView):
     model = models.StudyGuide
     fields = ["title"]
     template_name_suffix = "_update"
 
-class StudyGuideDeleteView(DeleteView):
+    def get_queryset(self):
+        return super().get_queryset().filter(user__id=self.request.user.id)
+
+class StudyGuideDeleteView(LoginRequiredMixin, DeleteView):
     model = models.StudyGuide
     template_name_suffix = "_delete"
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user__id=self.request.user.id)
 
-class FlashCardSetDetailView(DetailView):
+class FlashCardSetDetailView(LoginRequiredMixin, DetailView):
     model = models.FlashCardSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(study_guide__user__id=self.request.user.id)
