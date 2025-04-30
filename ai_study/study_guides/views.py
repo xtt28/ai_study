@@ -31,3 +31,7 @@ class StudyGuideUpdateView(UpdateView):
 class StudyGuideDeleteView(DeleteView):
     model = models.StudyGuide
     template_name_suffix = "_delete"
+
+
+class FlashCardSetDetailView(DetailView):
+    model = models.FlashCardSet

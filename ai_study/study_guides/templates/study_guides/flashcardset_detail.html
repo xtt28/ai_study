@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load markdownify %}
+
+{% block title %}Flashcards - {{ flashcardset.study_guide.title }}{% endblock title %}
+
+{% block content %}
+<a class="btn btn-block mb-5" href="{% url 'study_guides:detail' flashcardset.study_guide.id %}">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+    </svg>
+    Back to study guide overview
+</a>
+
+<hgroup class="space-y-2">
+    <h1 class="text-3xl font-bold">{{ flashcardset.study_guide.title }}</h1>
+    <p class="text-xl opacity-70">Created at {{ flashcardset.study_guide.created_at }}</p>
+</hgroup>
+
+<section class="mt-10 space-y-2">
+    
+</section>
+{% endblock content %}

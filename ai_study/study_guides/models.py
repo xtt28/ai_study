@@ -33,4 +33,12 @@ class TextStudyGuide(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return f'Study outline for study guide {self.study_guide}'
+        return f'Study outline for {self.study_guide}'
+    
+
+class FlashCardSet(models.Model):
+    study_guide = models.OneToOneField(StudyGuide, on_delete=models.CASCADE, related_name="flashcards")
+    data = models.JSONField()
+
+    def __str__(self):
+        return f"Flash cards for {self.study_guide}"
