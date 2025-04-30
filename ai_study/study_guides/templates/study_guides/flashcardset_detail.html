@@ -16,7 +16,64 @@
     <p class="text-xl opacity-70">Created at {{ flashcardset.study_guide.created_at }}</p>
 </hgroup>
 
+<div class="my-2 opacity-80">
+    There are <span id="card-amount"></span> cards in this flash card set.
+</div>
+
 <section class="mt-10 space-y-2">
-    
+    <div>
+        <div id="card-content" class="w-full h-64 bg-base-200 p-5 flex items-center justify-center text-center mb-5 active:scale-95 transition">
+            
+        </div>
+        <div class="flex w-full items-center">
+            <div class="flex">
+                <button class="btn" id="card-prev">Previous</button>
+                <button class="btn" id="card-next">Next</button>
+            </div>
+            <div class="ml-2">
+                <p>Card <span id="card-current"></span> of <span id="card-count"></span></p>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock content %}
+
+{% block endbody %}
+{{ flashcardset.data|json_script:"card-set-data" }}
+<script>
+    const CARD_FRONT = 0, CARD_BACK = 1;
+
+    const cardSetData = JSON.parse(document.getElementById("card-set-data").textContent);
+    
+    const numCards = cardSetData.length;
+    document.getElementById("card-amount").innerText = numCards;
+    document.getElementById("card-count").innerText = numCards;
+
+    let currentCard = 0;
+    let currentCardSide = CARD_FRONT;
+
+    function switchCard(index) {
+        currentCard = index;
+        const cardData = cardSetData[currentCard];
+        document.getElementById("card-content").innerText = cardData.front;
+        document.getElementById("card-current").innerText = currentCard + 1;
+        currentCardSide = CARD_FRONT;
+
+        document.getElementById("card-prev").disabled = currentCard === 0;
+        document.getElementById("card-next").disabled = currentCard === numCards - 1;
+    }
+
+    function flipCard() {
+        const cardData = cardSetData[currentCard];
+        const text = currentCardSide === CARD_FRONT ? cardData.back : cardData.front;
+        document.getElementById("card-content").innerText = text;
+        currentCardSide = currentCardSide ^ CARD_BACK;
+        console.log("Flipping the card.");
+    }
+
+    switchCard(0);
+    document.getElementById("card-content").addEventListener("click", flipCard);
+    document.getElementById("card-prev").addEventListener("click", () => { switchCard(currentCard - 1) });
+    document.getElementById("card-next").addEventListener("click", () => { switchCard(currentCard + 1) });
+</script>
+{% endblock endbody %}
