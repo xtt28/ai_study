@@ -3,7 +3,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
 from .file_parser import parse_pdf
-from .tasks import create_outline
+from .tasks import create_outline, create_flashcards
 
 class StudyGuide(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="study_guides")
@@ -27,6 +27,8 @@ def study_guide_after_save(sender, instance, created, *args, **kwargs):
         parse_pdf(instance)
         print(f"Generating outline for study guide {instance}")
         create_outline.delay(instance.id)
+        print(f"Generating flash cards for study guide {instance}")
+        create_flashcards.delay(instance.id)
     
 class TextStudyGuide(models.Model):
     study_guide = models.OneToOneField(StudyGuide, on_delete=models.CASCADE, related_name="outline")
@@ -42,3 +44,4 @@ class FlashCardSet(models.Model):
 
     def __str__(self):
         return f"Flash cards for {self.study_guide}"
+    

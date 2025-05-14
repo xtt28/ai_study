@@ -43,7 +43,7 @@
 <script>
     const CARD_FRONT = 0, CARD_BACK = 1;
 
-    const cardSetData = JSON.parse(document.getElementById("card-set-data").textContent);
+    const cardSetData = JSON.parse(document.getElementById("card-set-data").textContent)["cards"];
     
     const numCards = cardSetData.length;
     document.getElementById("card-amount").innerText = numCards;
