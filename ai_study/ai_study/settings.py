@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users',
     'study_guides',
     'markdownify.apps.MarkdownifyConfig',
+    'django_minify_html',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'django_minify_html.middleware.MinifyHtmlMiddleware',
 ]
 
 ROOT_URLCONF = 'ai_study.urls'
