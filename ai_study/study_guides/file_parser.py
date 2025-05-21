@@ -7,5 +7,6 @@ def parse_pdf(study_guide):
     for page in reader.pages:
         text += page.extract_text()
 
+    
     study_guide.file_text_data = text
     study_guide.save()

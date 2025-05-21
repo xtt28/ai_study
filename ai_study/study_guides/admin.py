@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(StudyGuide)
 admin.site.register(TextStudyGuide)
 admin.site.register(FlashCardSet)
+admin.site.register(MultipleChoiceTest)

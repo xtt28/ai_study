@@ -50,3 +50,16 @@ class FlashCardSetDetailView(LoginRequiredMixin, DetailView):
 
     def get_queryset(self):
         return super().get_queryset().filter(study_guide__user__id=self.request.user.id)
+    
+
+class MultipleChoiceTestDetailView(LoginRequiredMixin, DetailView):
+    model = models.MultipleChoiceTest
+
+    def get_queryset(self):
+        return super().get_queryset().filter(study_guide__user__id=self.request.user.id)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["questions"] = super().get_context_data(**kwargs)["multiplechoicetest"].data["questions"]
+        return context
+    

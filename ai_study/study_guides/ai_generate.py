@@ -35,6 +35,7 @@ def generate_outline(study_guide):
             "role": "developer",
             "content": system_prompt,
         },
+        
         {
             "role": "user",
             "content": raw_text
