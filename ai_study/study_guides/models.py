@@ -45,3 +45,11 @@ class FlashCardSet(models.Model):
     def __str__(self):
         return f"Flash cards for {self.study_guide}"
     
+
+class MultipleChoiceTest(models.Model):
+    study_guide = models.OneToOneField(StudyGuide, on_delete=models.CASCADE, related_name="multi_choice_test")
+    data = models.JSONField()
+
+    def __str__(self):
+        return f"Multiple-choice test for {self.study_guide}"
+    

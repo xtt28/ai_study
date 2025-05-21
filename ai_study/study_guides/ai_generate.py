@@ -14,6 +14,16 @@ class FlashCardListJsonSchema(BaseModel):
     cards: list[FlashCardJsonSchema]
 
 
+class MultipleChoiceQuestionJsonSchema(BaseModel):
+    prompt: str
+    options: list[str]
+    correct_option: str
+
+
+class MultipleChoiceTestJsonSchema(BaseModel):
+    questions: list[MultipleChoiceQuestionJsonSchema]
+
+
 def generate_outline(study_guide):
     system_prompt = """Use the following transcript extracted from a document to generate a study guide in bullet point outline format, structured with Markdown formatting and headings/subheadings. The study guide should describe the most important content in the transcript. When adding sublevels to a Markdown list, you must indent each sublevel by 4 additional spaces."""
     raw_text = study_guide.file_text_data
